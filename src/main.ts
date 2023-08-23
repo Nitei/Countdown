@@ -19,8 +19,9 @@ export class App {
     decrementTime: 10,
     _counter: 0,
     increment(time: number) {
-      if (this._counter > 0) {
-        this._counter += time;
+      this._counter += time;
+      if (this._counter <= 0) {
+        this.count();
       }
     },
     start(time: number) {
@@ -33,7 +34,7 @@ export class App {
         this._counter -= this.decrementTime;
         if (this._counter <= 0) {
           this.clear();
-          this.finished.next(null)
+          this.finished.next(null);
         }
       }, this.decrementTime);
     },
